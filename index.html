@@ -15,17 +15,18 @@
 }
 
 body{
-  height:100vh;
+  min-height:100vh;
   background:radial-gradient(circle at top,#1a0f16,#050407 70%);
   display:flex;
   justify-content:center;
   align-items:center;
   font-family:'Inter',sans-serif;
   color:#f5e9ec;
-  overflow:hidden;
+  overflow-x:hidden;
+  padding:20px;
 }
 
-/* затемнение по краям */
+/* затемнение */
 body::after{
   content:"";
   position:fixed;
@@ -38,16 +39,19 @@ body::after{
 nav{
   position:fixed;
   top:20px;
+  width:100%;
   display:flex;
-  gap:30px;
+  justify-content:center;
+  gap:25px;
   z-index:20;
+  flex-wrap:wrap;
 }
 
 nav button{
   background:none;
   border:none;
   font-family:'Cinzel',serif;
-  font-size:18px;
+  font-size:16px;
   color:#f3cfd8;
   cursor:pointer;
   letter-spacing:2px;
@@ -63,9 +67,13 @@ nav button:hover{
 /* секции */
 .section{
   position:absolute;
+  width:100%;
+  max-width:1000px;
   opacity:0;
   pointer-events:none;
-  transition:opacity 1s ease;
+  transition:opacity 0.8s ease;
+  display:flex;
+  justify-content:center;
 }
 
 .section.active{
@@ -73,25 +81,26 @@ nav button:hover{
   pointer-events:auto;
 }
 
-/* ГЛАВНЫЙ БЛОК */
+/* карточка */
 .card{
+  width:100%;
   background:rgba(20,10,18,0.75);
   backdrop-filter:blur(8px);
   border:1px solid rgba(255,150,180,0.3);
-  padding:60px 80px;
+  padding:clamp(30px,5vw,60px);
   border-radius:30px;
   text-align:center;
   box-shadow:
     0 0 25px rgba(255,150,180,0.25),
     inset 0 0 25px rgba(255,150,180,0.1);
-  animation:fadeUp 2s ease forwards;
+  animation:fadeUp 1.5s ease forwards;
 }
 
 h1{
   font-family:'Cinzel',serif;
-  font-size:72px;
-  letter-spacing:6px;
-  margin-bottom:40px;
+  font-size:clamp(36px,8vw,72px);
+  letter-spacing:4px;
+  margin-bottom:30px;
   color:#f8d7df;
   text-shadow:0 0 15px rgba(248,215,223,0.7),
               0 0 40px rgba(248,215,223,0.3);
@@ -99,8 +108,8 @@ h1{
 }
 
 p{
-  font-size:26px;
-  margin-bottom:20px;
+  font-size:clamp(18px,4.5vw,26px);
+  margin-bottom:16px;
   text-shadow:0 0 10px rgba(255,200,220,0.5);
   opacity:0;
   animation:appear 2s ease forwards;
@@ -108,7 +117,6 @@ p{
 
 p:nth-child(2){animation-delay:1s;}
 p:nth-child(3){animation-delay:2.2s;}
-p:nth-child(4){animation-delay:3.4s;}
 
 @keyframes appear{
   from{opacity:0;transform:translateY(15px);}
@@ -128,28 +136,28 @@ p:nth-child(4){animation-delay:3.4s;}
 /* галерея */
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:25px;
-  max-width:900px;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:18px;
+  width:100%;
 }
 
 .gallery img{
   width:100%;
   border-radius:18px;
   box-shadow:0 0 20px rgba(255,150,180,0.4);
-  transition:.5s;
+  transition:.4s;
 }
 
 .gallery img:hover{
-  transform:scale(1.06);
+  transform:scale(1.04);
   box-shadow:0 0 35px rgba(255,150,180,0.9);
 }
 
 /* сердечки */
 .heart{
   position:absolute;
-  width:8px;
-  height:8px;
+  width:6px;
+  height:6px;
   background:#b24b68;
   transform:rotate(45deg);
   opacity:.4;
@@ -160,14 +168,14 @@ p:nth-child(4){animation-delay:3.4s;}
 .heart::after{
   content:"";
   position:absolute;
-  width:8px;
-  height:8px;
+  width:6px;
+  height:6px;
   background:#b24b68;
   border-radius:50%;
 }
 
-.heart::before{top:-4px;}
-.heart::after{left:-4px;}
+.heart::before{top:-3px;}
+.heart::after{left:-3px;}
 
 @keyframes floatUp{
   from{
@@ -181,11 +189,12 @@ p:nth-child(4){animation-delay:3.4s;}
 /* кнопка музыки */
 .music-btn{
   position:fixed;
-  bottom:25px;
+  bottom:20px;
   font-family:'Cinzel',serif;
   background:none;
   border:1px solid #f3cfd8;
-  padding:8px 18px;
+  padding:6px 14px;
+  font-size:14px;
   color:#f3cfd8;
   cursor:pointer;
   letter-spacing:2px;
@@ -198,6 +207,22 @@ p:nth-child(4){animation-delay:3.4s;}
   background:#f3cfd8;
   color:#000;
 }
+
+/* мобильная оптимизация */
+@media (max-width:480px){
+  body{
+    align-items:flex-start;
+    padding-top:100px;
+  }
+
+  nav{
+    gap:15px;
+  }
+
+  .card{
+    border-radius:20px;
+  }
+}
 </style>
 </head>
 
@@ -208,7 +233,6 @@ p:nth-child(4){animation-delay:3.4s;}
   <button onclick="showSection('photos')">фотки</button>
 </nav>
 
-<!-- ВАЛЕНТИНКА -->
 <div id="love" class="section active">
   <div class="card">
     <h1>алёна</h1>
@@ -217,7 +241,6 @@ p:nth-child(4){animation-delay:3.4s;}
   </div>
 </div>
 
-<!-- ФОТО -->
 <div id="photos" class="section">
   <div class="card">
     <div class="gallery">
@@ -228,7 +251,6 @@ p:nth-child(4){animation-delay:3.4s;}
   </div>
 </div>
 
-<!-- МУЗЫКА -->
 <audio id="bg-music" loop>
   <source src="cupsize-waifu.mp3" type="audio/mpeg">
 </audio>
@@ -251,20 +273,19 @@ function toggleMusic(){
   }
 }
 
-/* сердечки */
 function createHeart(){
   const heart=document.createElement('div');
   heart.className='heart';
   heart.style.left=Math.random()*100+'vw';
-  heart.style.animationDuration=12+Math.random()*10+'s';
+  heart.style.animationDuration=12+Math.random()*8+'s';
   document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),22000);
+  setTimeout(()=>heart.remove(),20000);
 }
 
-for(let i=0;i<50;i++){
+for(let i=0;i<30;i++){
   setTimeout(createHeart,i*300);
 }
-setInterval(createHeart,900);
+setInterval(createHeart,1200);
 </script>
 
 </body>
