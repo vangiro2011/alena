@@ -26,7 +26,6 @@ body{
   padding:20px;
 }
 
-/* затемнение */
 body::after{
   content:"";
   position:fixed;
@@ -35,7 +34,6 @@ body::after{
   pointer-events:none;
 }
 
-/* навигация */
 nav{
   position:fixed;
   top:20px;
@@ -64,7 +62,6 @@ nav button:hover{
   text-shadow:0 0 18px rgba(255,159,182,0.9);
 }
 
-/* секции */
 .section{
   position:absolute;
   width:100%;
@@ -81,7 +78,6 @@ nav button:hover{
   pointer-events:auto;
 }
 
-/* карточка */
 .card{
   width:100%;
   background:rgba(20,10,18,0.75);
@@ -133,7 +129,6 @@ p:nth-child(3){animation-delay:2.2s;}
   to{opacity:1;transform:translateY(0);}
 }
 
-/* галерея */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
@@ -153,7 +148,6 @@ p:nth-child(3){animation-delay:2.2s;}
   box-shadow:0 0 35px rgba(255,150,180,0.9);
 }
 
-/* сердечки */
 .heart{
   position:absolute;
   width:6px;
@@ -186,7 +180,6 @@ p:nth-child(3){animation-delay:2.2s;}
   }
 }
 
-/* кнопка музыки */
 .music-btn{
   position:fixed;
   bottom:20px;
@@ -208,7 +201,6 @@ p:nth-child(3){animation-delay:2.2s;}
   color:#000;
 }
 
-/* мобильная оптимизация */
 @media (max-width:480px){
   body{
     align-items:flex-start;
@@ -290,3 +282,4 @@ setInterval(createHeart,1200);
 
 </body>
 </html>
+
